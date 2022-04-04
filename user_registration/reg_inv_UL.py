@@ -186,6 +186,7 @@ organization_data.click()
 rand_organization_name = random.randint(1, 99)
 organization_name = driver.find_element(By.XPATH, '/html/body/div/div[1]/main/div/div/div[2]/article/div[1]/div[2]/div/div[1]/div/div[2]/input')
 organization_name.send_keys(rand_organization_name)
+time.sleep(1)
 
 select_organization = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="app"]/div[1]/main/div/div/div[2]/article/div[1]/div[2]/div/div[1]/div/div[2]/div[2]/button[1]')))
 select_organization.click()
