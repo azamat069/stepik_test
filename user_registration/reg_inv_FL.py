@@ -13,7 +13,7 @@ stage = 'https://stage5.co.fi/register'
 crm_stage = 'https://crm.stage5.co.fi/'
 
 crm_login = 'a.abdurashidov@cofi.ru'
-crm_pass = '232526Aa'
+crm_pass = ''
 file_1 = 'C:\cover.png'
 file_2 = 'C:\selenium-csharp.jpg'
 
@@ -394,19 +394,19 @@ check_box_6 = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1
 check_box_6.click()
 time.sleep(2)
 
-#Клик по кнопке Подписать
-sign_dec = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div/div[2]/div/div[4]/div[2]/div/div[2]/button')))
-sign_dec.click()
-
-# СМС подтверждение декларации
-sms_check_5 = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div/div[2]/div/div[4]/form/div[2]/input[1]')))
-sms_check_6 = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div/div[2]/div/div[4]/form/div[2]/input[2]')
-sms_check_7 = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div/div[2]/div/div[4]/form/div[2]/input[3]')
-sms_check_8 = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div/div[2]/div/div[4]/form/div[2]/input[4]')
-
-sms_check_5.send_keys(1)
-sms_check_6.send_keys(1)
-sms_check_7.send_keys(1)
-sms_check_8.send_keys(1)
+# #Клик по кнопке Подписать
+# sign_dec = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div/div[2]/div/div[4]/div[2]/div/div[2]/button')))
+# sign_dec.click()
+#
+# # СМС подтверждение декларации
+# sms_check_5 = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div/div[2]/div/div[4]/form/div[2]/input[1]')))
+# sms_check_6 = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div/div[2]/div/div[4]/form/div[2]/input[2]')
+# sms_check_7 = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div/div[2]/div/div[4]/form/div[2]/input[3]')
+# sms_check_8 = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div/div[2]/div/div[4]/form/div[2]/input[4]')
+#
+# sms_check_5.send_keys(1)
+# sms_check_6.send_keys(1)
+# sms_check_7.send_keys(1)
+# sms_check_8.send_keys(1)
 
 
