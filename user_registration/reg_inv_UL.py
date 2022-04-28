@@ -15,7 +15,7 @@ stage = 'https://stage7.co.fi/register'
 crm_stage = 'https://crm.stage7.co.fi/'
 
 crm_login = 'a.abdurashidov@cofi.ru'
-crm_pass = '232526Aa'
+crm_pass = ''
 file_1 = 'C:\cover.png'
 file_2 = 'C:\selenium-csharp.jpg'
 
