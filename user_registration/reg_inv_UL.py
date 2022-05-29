@@ -14,8 +14,8 @@ import pandas as pd
 stage = 'https://stage5.co.fi/register'
 crm_stage = 'https://crm.stage5.co.fi/'
 
-crm_login = 'a.abdurashidov@cofi.ru'
-crm_pass = 'cpm$yrwj'
+crm_login = ''
+crm_pass = ''
 file_1 = 'C:\cover.png'
 file_2 = 'C:\selenium-csharp.jpg'
 
