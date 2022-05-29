@@ -9,11 +9,12 @@ from selenium.webdriver.support import expected_conditions as EC
 import datetime as DT
 import pandas as pd
 
-stage = 'https://stage5.co.fi/register'
-crm_stage = 'https://crm.stage5.co.fi/'
+
+stage = 'https://stage2.co.fi/register'
+crm_stage = 'https://crm.stage2.co.fi/'
 
 crm_login = 'a.abdurashidov@cofi.ru'
-crm_pass = ''
+crm_pass = 'cpm$yrwj'
 file_1 = 'C:\cover.png'
 file_2 = 'C:\selenium-csharp.jpg'
 
@@ -180,7 +181,7 @@ time.sleep(0.5)
 
 
 #Ввод логин/пароль
-email_input = driver.find_element(By.XPATH, '/html/body/div/div/main/div/div/div[1]/div/form/div[1]/div/div[1]/div/input')
+email_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div/div/main/div/div/div[1]/div/form/div[1]/div/div[1]/div/input')))
 pass_input = driver.find_element(By.XPATH, '/html/body/div/div/main/div/div/div[1]/div/form/div[2]/div/div[1]/div/input')
 email_input.send_keys(crm_login)
 pass_input.send_keys(crm_pass)
@@ -223,7 +224,7 @@ time.sleep(1)
 #Клик по фильтру "Поступление на модерацию"
 moderation_time = driver.find_element(By.XPATH, '//*[@id="app"]/div[1]/div[1]/main/div/div/div[2]/div/div/div/div/div/div[1]/table/thead/tr/th[5]/span')
 moderation_time.click()
-time.sleep(0.5)
+time.sleep(1)
 moderation_time.click()
 
 
@@ -380,33 +381,42 @@ time.sleep(1.5)
 
 #Преключение на стейдж
 driver.switch_to.window(driver.window_handles[2])
-time.sleep(5)
-driver.refresh()
 time.sleep(3)
 driver.refresh()
+# time.sleep(3)
+# driver.refresh()
 
-# Клик по кнопке Подписать
-sign_dec_dash = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div/main/div/div/div[1]/div/div/button')))
-sign_dec_dash.click()
+# # Клик по кнопке Подписать
+# sign_dec_dash = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div/main/div/div/div[1]/div/div/button')))
+# sign_dec_dash.click()
 
 #Клик по чек боксу
-check_box_6 = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div/div[2]/div/div[4]/div[2]/div/div[1]/div/div/label/div[1]')))
+check_box_6 = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div/div[2]/div/div[3]/div[3]/div/div[1]/div/div/label/div[1]')))
 check_box_6.click()
-time.sleep(2)
-
-# #Клик по кнопке Подписать
-# sign_dec = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div/div[2]/div/div[4]/div[2]/div/div[2]/button')))
-# sign_dec.click()
-#
-# # СМС подтверждение декларации
-# sms_check_5 = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div/div[2]/div/div[4]/form/div[2]/input[1]')))
-# sms_check_6 = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div/div[2]/div/div[4]/form/div[2]/input[2]')
-# sms_check_7 = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div/div[2]/div/div[4]/form/div[2]/input[3]')
-# sms_check_8 = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div/div[2]/div/div[4]/form/div[2]/input[4]')
-#
-# sms_check_5.send_keys(1)
-# sms_check_6.send_keys(1)
-# sms_check_7.send_keys(1)
-# sms_check_8.send_keys(1)
 
 
+#Клик по кнопке Подписать
+sign_dec = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'declaration__button')))
+sign_dec.click()
+
+# СМС подтверждение декларации
+sms_check_5 = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div/div[2]/div/div[4]/form/div[2]/input[1]')))
+sms_check_6 = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div/div[2]/div/div[4]/form/div[2]/input[2]')
+sms_check_7 = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div/div[2]/div/div[4]/form/div[2]/input[3]')
+sms_check_8 = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div/div[2]/div/div[4]/form/div[2]/input[4]')
+
+sms_check_5.send_keys(1)
+sms_check_6.send_keys(1)
+sms_check_7.send_keys(1)
+sms_check_8.send_keys(1)
+time.sleep(5)
+
+menu_title = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div/header/div/div/nav/div/div'))).click()
+show_email = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/header/div/div/nav/div/div/div[3]/div[1]/div[2]')
+time.sleep(1)
+print_email = show_email.text
+print_password = 'Password1'
+print(print_email)
+print(print_password)
+time.sleep(15)
+driver.quit()

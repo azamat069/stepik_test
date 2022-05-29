@@ -11,11 +11,11 @@ import pandas as pd
 
 
 
-stage = 'https://stage7.co.fi/register'
-crm_stage = 'https://crm.stage7.co.fi/'
+stage = 'https://stage5.co.fi/register'
+crm_stage = 'https://crm.stage5.co.fi/'
 
 crm_login = 'a.abdurashidov@cofi.ru'
-crm_pass = ''
+crm_pass = 'cpm$yrwj'
 file_1 = 'C:\cover.png'
 file_2 = 'C:\selenium-csharp.jpg'
 
@@ -310,25 +310,25 @@ user_moderation = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="app
 user_moderation.click()
 # time.sleep(2)
 
-#Клик по дропдауну "Статус"
-select_status = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="app"]/div/div[1]/main/div/div/div[2]/div/div/div/div/form/div[1]/div[4]/div/div/div/div/div[1]/div[1]')))
-select_status.click()
+# #Клик по дропдауну "Статус"
+# select_status = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="app"]/div/div[1]/main/div/div/div[2]/div/div/div/div/form/div[1]/div[4]/div/div/div/div/div[1]/div[1]')))
+# select_status.click()
+# # time.sleep(1)
+#
+# #Клик по статусу "На модерации"
+# status_on_modarate = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div/div[2]/div/div[2]')))
+# status_on_modarate.click()
+# # time.sleep(1)
+#
+# #Клик по кнопке "Поиск"
+# search = driver.find_element(By.XPATH, '//*[@id="app"]/div[1]/div[1]/main/div/div/div[2]/div/div/div/div/form/div[1]/div[7]/div/button')
+# search.submit()
 # time.sleep(1)
-
-#Клик по статусу "На модерации"
-status_on_modarate = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div/div[2]/div/div[2]')))
-status_on_modarate.click()
-# time.sleep(1)
-
-#Клик по кнопке "Поиск"
-search = driver.find_element(By.XPATH, '//*[@id="app"]/div[1]/div[1]/main/div/div/div[2]/div/div/div/div/form/div[1]/div[7]/div/button')
-search.submit()
-time.sleep(1)
 
 #Клик по фильтру "Поступление на модерацию"
-moderation_time = driver.find_element(By.XPATH, '//*[@id="app"]/div[1]/div[1]/main/div/div/div[2]/div/div/div/div/div/div[1]/table/thead/tr/th[5]/span')
+moderation_time = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="app"]/div[1]/div[1]/main/div/div/div[2]/div/div/div/div/div/div[1]/table/thead/tr/th[5]/span')))
 moderation_time.click()
-time.sleep(0.5)
+time.sleep(1)
 moderation_time.click()
 
 
@@ -470,12 +470,12 @@ time.sleep(1)
 
 
 #Клик по кнопке "Сведения о финансовом положении и деловой репутации"
-finance_info_crm = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[1]/main/div/div/div[2]/div/div/div/div[5]/div/div/div/div/div/div/div[1]/div/div/div[4]/button/div[2]/i')
+finance_info_crm = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div/div[1]/div[1]/main/div/div/div[2]/div/div/div/div[5]/div/div/div/div/div/div/div[1]/div/div/div[3]/button/div[2]/i')))
 finance_info_crm.click()
 time.sleep(0.5)
 
 #Клик по чек-боксу "Необходимые сведения предоствлены"
-necessary_information = driver.find_element(By.XPATH, '/html/body/div/div/div[1]/main/div/div/div[2]/div/div/div/div[5]/div/div/div/div/div/div/div[1]/div/div/div[4]/div/div/div[2]/div[2]/div/div/div[1]/div/div[1]/div/div')
+necessary_information = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[1]/main/div/div/div[2]/div/div/div/div[5]/div/div/div/div/div/div/div[1]/div/div/div[3]/div/div/div[2]/div[2]/div/div/div[1]/div/div[1]/div/div')
 necessary_information.click()
 
 #Скролл
@@ -527,4 +527,12 @@ sms_check_6.send_keys(1)
 sms_check_7.send_keys(1)
 sms_check_8.send_keys(1)
 
-
+# menu_title = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div/header/div/div/nav/div/div'))).click()
+# show_email = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/header/div/div/nav/div/div/div[3]/div[1]/div[2]')
+# time.sleep(1)
+# print_email = show_email.text
+# print_password = 'Password1'
+# print(print_email)
+# print(print_password)
+# time.sleep(15)
+# driver.quit()
