@@ -8,14 +8,12 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import datetime as DT
 import pandas as pd
-import pytest
-
 
 stage = 'https://stage2.co.fi/register'
 crm_stage = 'https://crm.stage2.co.fi/'
 
-crm_login = 'a.abdurashidov@cofi.ru'
-crm_pass = 'cpm$yrwj'
+crm_login = ''
+crm_pass = ''
 file_1 = 'C:/cover.png'
 file_2 = 'C:/selenium-csharp.jpg'
 
@@ -28,7 +26,6 @@ time.sleep(1)
 driver.execute_script("window.open('about:blank', 'tab2');")
 driver.switch_to.window("tab2")
 driver.get('https://www.mailinator.com/site/verified-pro-plan/')
-# time.sleep(0.5)
 
 # Функция рандомных значений email
 random_email = (''.join(random.choice(string.ascii_lowercase) for i in range(12)))
@@ -36,7 +33,6 @@ random_email = (''.join(random.choice(string.ascii_lowercase) for i in range(12)
 # Ввод в mailinator рандомных данных
 mailinator_mail = driver.find_element(By.XPATH, '/html/body/div[1]/header[1]/div[1]/div/div/div[1]/div/input')
 mailinator_mail.send_keys(random_email)
-# time.sleep(1)
 mailinator_go = driver.find_element(By.XPATH, '/html/body/div[1]/header[1]/div[1]/div/div/div[1]/div/button').click()
 time.sleep(1)
 
@@ -44,110 +40,98 @@ time.sleep(1)
 copy_email = driver.find_element(By.XPATH, '/html/body/div/main/div[2]/div[1]/div[5]/input')
 actionchains = ActionChains(driver)
 actionchains.double_click(copy_email).perform()
-time.sleep(0.5)
 copy_email.send_keys(Keys.CONTROL + 'C')
-# time.sleep(1)
 driver.switch_to.window(driver.window_handles[0])
 
 # Клик по радио-кнопке "Инвестор"
 radio_button_investor = driver.find_element(By.XPATH,
                                             '/html/body/div[1]/div/div/div/main/div/div[1]/form/div[1]/label[2]/div[2]')
 radio_button_investor.click()
-time.sleep(1)
 
 # Ввод в поле Email
 email_input = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div/div[1]/form/div[2]/div/div/input')
 email_input.send_keys(Keys.CONTROL + 'V')
 email_input.send_keys('@mailinator.com')
-# time.sleep(1)
 
 # Ввод в поле пароль
-password_input = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div/div[1]/form/div[3]/div/div/input')
+password_input = driver.find_element(By.XPATH,
+                                     '/html/body/div[1]/div/div/div/main/div/div[1]/form/div[3]/div/div/input')
 password_input.send_keys('Password1')
-# time.sleep(1)
 
 # Ввод в поле повторите пароль
-password_input = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div/div[1]/form/div[4]/div/div/input')
+password_input = driver.find_element(By.XPATH,
+                                     '/html/body/div[1]/div/div/div/main/div/div[1]/form/div[4]/div/div/input')
 password_input.send_keys('Password1')
-# time.sleep(1)
 
 # Клик на чек-бокс Я ознакомлен с правилами
 check_box_1 = driver.find_element(By.XPATH,
                                   '/html/body/div[1]/div/div/div/main/div/div[1]/form/div[5]/div[1]/label/div[1]')
 check_box_1.click()
-# time.sleep(1)
 
 # Клик на чек-бокс Я согласен на обработку
-check_box_2 = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div/div[1]/form/div[5]/div[2]/label/div[1]')
+check_box_2 = driver.find_element(By.XPATH,
+                                  '/html/body/div[1]/div/div/div/main/div/div[1]/form/div[5]/div[2]/label/div[1]')
 check_box_2.click()
-# time.sleep(1)
 
 # Клик на чек-бокс Я согласен на получение
-check_box_3 = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div/div[1]/form/div[5]/div[3]/label/div[1]')
+check_box_3 = driver.find_element(By.XPATH,
+                                  '/html/body/div[1]/div/div/div/main/div/div[1]/form/div[5]/div[3]/label/div[1]')
 check_box_3.click()
-# time.sleep(1)
 
 # Клик по кнопке Зарегестрироваться
 register_1 = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div/div[1]/form/button')
 register_1.click()
-time.sleep(1)
 
 # Подтверждение почты в mailinator
 driver.switch_to.window(driver.window_handles[1])
-# # time.sleep(10)
 
 wait = WebDriverWait(driver, 20)
 register_latter = wait.until(
     EC.element_to_be_clickable((By.XPATH, '/html/body/div/main/div[2]/div[3]/div/div[4]/div/div/table/tbody/tr/td[2]')))
 register_latter.click()
-time.sleep(0.5)
+time.sleep(0.3)
 tab_links = driver.find_element(By.XPATH, '/html/body/div/main/div[1]/div/div[3]/ul/li[5]/a')
 tab_links.click()
-time.sleep(1)
-register_link = driver.find_element(By.PARTIAL_LINK_TEXT, '/auth/verification' and '/email/verify')
+register_link = wait.until(EC.element_to_be_clickable((By.PARTIAL_LINK_TEXT, '/auth/verification' and '/email/verify')))
 register_link.click()
-time.sleep(0.5)
 
 # Переключение на вкладку регистрации
 driver.switch_to.window(driver.window_handles[2])
-time.sleep(2)
 
 # Клик по кнопке Заполнить
 filling = wait.until(
     EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div/main/div/div/div[1]/div/div/button')))
 filling.click()
-time.sleep(2)
 
-#Клик по чек боксу "ФЛ"
-check_box_FL = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div/div[1]/form/div/label[1]/div[1]')
+# Клик по чек боксу "ФЛ"
+check_box_FL = wait.until(
+    EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div/main/div/div[1]/form/div/label[1]/div[1]')))
 check_box_FL.click()
 
 # Отключение стиля display в инпутах пасспортов
 driver.execute_script(
     "document.querySelectorAll('.file-input__field input').forEach(field => {field.style.display = 'block'});")
-time.sleep(1)
 
 # Добавление фото в инпут 1
 input_passport1 = wait.until(
-    EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div/main/div/div[1]/form/div[2]/div[1]/div[2]/label/input')))
+    EC.element_to_be_clickable(
+        (By.XPATH, '/html/body/div[1]/div/div/div/main/div/div[1]/form/div[2]/div[1]/div[2]/label/input')))
 input_passport1.send_keys(file_1)
 
 # Добавление фото в инпут 2
 input_passport2 = wait.until(
-    EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div/main/div/div[1]/form/div[2]/div[2]/div[2]/label/input')))
+    EC.element_to_be_clickable(
+        (By.XPATH, '/html/body/div[1]/div/div/div/main/div/div[1]/form/div[2]/div[2]/div[2]/label/input')))
 input_passport2.send_keys(file_2)
-
-# Скролл
-driver.execute_script("window.scrollTo(0, 500)")
-time.sleep(0.5)
+time.sleep(1)
 
 # Функция рандома номера телефона
 random_phone_number = [random.randint(100000000, 999999999) for i in range(1)]
 
 # Ввод номера телефона
-input_number = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div/div[1]/form/div[2]/div[3]/div/div/input')
+input_number = driver.find_element(By.XPATH,
+                                   '/html/body/div[1]/div/div/div/main/div/div[1]/form/div[2]/div[3]/div/div/input')
 input_number.send_keys('9', str(random_phone_number))
-# time.sleep(1)
 
 # Чек бокс Я не являюсь публичным
 check_box_4 = driver.find_element(By.XPATH,
@@ -158,31 +142,33 @@ check_box_4.click()
 check_box_5 = driver.find_element(By.XPATH,
                                   '/html/body/div[1]/div/div/div/main/div/div[1]/form/div[2]/div[4]/div[2]/label/div[1]')
 check_box_5.click()
-time.sleep(1)
+
+# Скролл
+driver.execute_script("window.scrollTo(0, 500)")
 
 # Кнопка отправить
 send = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div/div[1]/form/div[2]/button')
 send.click()
-time.sleep(1)
 
 # СМС подтверждение
-sms_check_1 = wait.until(
-    EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div/div[2]/div/div[4]/form/div[2]/input[1]')))
-sms_check_2 = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div/div[2]/div/div[4]/form/div[2]/input[2]')
-sms_check_3 = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div/div[2]/div/div[4]/form/div[2]/input[3]')
-sms_check_4 = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div/div[2]/div/div[4]/form/div[2]/input[4]')
+sms_check_1 = wait.until(EC.element_to_be_clickable(
+    (By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div/div[2]/div/div[4]/form/div[2]/input[1]')))
+sms_check_2 = driver.find_element(By.XPATH,
+                                  '/html/body/div[1]/div/div/div/div[1]/div/div[2]/div/div[4]/form/div[2]/input[2]')
+sms_check_3 = driver.find_element(By.XPATH,
+                                  '/html/body/div[1]/div/div/div/div[1]/div/div[2]/div/div[4]/form/div[2]/input[3]')
+sms_check_4 = driver.find_element(By.XPATH,
+                                  '/html/body/div[1]/div/div/div/div[1]/div/div[2]/div/div[4]/form/div[2]/input[4]')
 
 sms_check_1.send_keys(1)
 sms_check_2.send_keys(1)
 sms_check_3.send_keys(1)
 sms_check_4.send_keys(1)
-time.sleep(1)
 
-#Переключение на вкладку CRM
+# Переключение на вкладку CRM
 driver.execute_script("window.open('about:blank', 'tab3');")
 driver.switch_to.window("tab3")
 driver.get(crm_stage)
-time.sleep(0.5)
 
 # Ввод логин/пароль
 email_input = wait.until(EC.element_to_be_clickable(
@@ -195,41 +181,34 @@ pass_input.send_keys(crm_pass)
 # Кнопка войти
 login = driver.find_element(By.XPATH, '//*[@id="app"]/div/main/div/div/div[1]/div/form/button')
 login.click()
-# time.sleep(2)
 
 # Открытие меню
 menu = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div/div/div[1]/header/div/div/div[1]/button')))
 menu.click()
-# time.sleep(1)
 
 # Клик по кнопке "Модерация"
 moderation = wait.until(
     EC.element_to_be_clickable((By.XPATH, '//*[@id="app"]/div[2]/div[1]/nav/div[1]/div/div/div[1]/div[1]')))
 moderation.click()
-# time.sleep(1)
 
 # Клик по кнопке "Пользователи"
 user_moderation = wait.until(
     EC.element_to_be_clickable((By.XPATH, '//*[@id="app"]/div[2]/div[1]/nav/div[1]/div/div/div[1]/div[2]/a[1]')))
 user_moderation.click()
-# time.sleep(2)
 
 # Клик по дропдауну "Статус"
 select_status = wait.until(EC.element_to_be_clickable((By.XPATH,
                                                        '//*[@id="app"]/div/div[1]/main/div/div/div[2]/div/div/div/div/form/div[1]/div[4]/div/div/div/div/div[1]/div[1]')))
 select_status.click()
-# time.sleep(1)
 
 # Клик по статусу "На модерации"
 status_on_modarate = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div/div[2]/div/div[2]')))
 status_on_modarate.click()
-# time.sleep(1)
 
 # Клик по кнопке "Поиск"
 search = driver.find_element(By.XPATH,
                              '//*[@id="app"]/div[1]/div[1]/main/div/div/div[2]/div/div/div/div/form/div[1]/div[7]/div/button')
 search.submit()
-time.sleep(1)
 
 # Клик по фильтру "Поступление на модерацию"
 moderation_time = driver.find_element(By.XPATH,
@@ -242,7 +221,6 @@ moderation_time.click()
 first_user = wait.until(EC.element_to_be_clickable((By.XPATH,
                                                     '/html/body/div/div[1]/div[1]/main/div/div/div[2]/div/div/div/div/div/div[1]/table/tbody/tr[1]/td[7]/span/span')))
 first_user.click()
-# time.sleep(2)
 
 #############  **ФУНКЦИИ РАНДОМНЫХ ДАННЫХ**  ##################################
 # Рандом имени
@@ -294,24 +272,20 @@ random_birth_date = random.choice(random_date)
 birth_date = driver.find_element(By.XPATH,
                                  '/html/body/div/div[1]/div[1]/main/div/div/div[2]/div/div/div/div[5]/div/div/div/div/div/div/div[1]/div/div/div[1]/div/div/form/div[1]/div[5]/div[1]/div/div[1]/div/input')
 birth_date.send_keys(random_birth_date)
-# time.sleep(1)
 
 # Ввод серии/номера паспорта
 passport_ser_num = driver.find_element(By.XPATH,
                                        '/html/body/div/div[1]/div[1]/main/div/div/div[2]/div/div/div/div[5]/div/div/div/div/div/div/div[1]/div/div/div[1]/div/div/form/div[3]/div[1]/div/div/div[1]/div/input')
 passport_ser_num.send_keys('1111111111')
-# time.sleep(1)
 
 # Ввод кода подразделения
 code_of_state = driver.find_element(By.XPATH,
                                     '/html/body/div/div[1]/div[1]/main/div/div/div[2]/div/div/div/div[5]/div/div/div/div/div/div/div[1]/div/div/div[1]/div/div/form/div[3]/div[2]/div[1]/div/div[1]/div/input')
 code_of_state.send_keys(random.randint(1, 85))
-# time.sleep(3)
 
 show_states = wait.until(
     EC.element_to_be_clickable((By.XPATH, '//*[@id="personal_information_block"]/div/div/form/div[3]/div[2]/div[1]')))
 show_states.click()
-# time.sleep(2)
 
 choice_state = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div/div[3]/div/div[1]')))
 choice_state.click()
@@ -331,8 +305,6 @@ random_issue_date = random.choice(random_passport_issue_date)
 date_issue = driver.find_element(By.XPATH,
                                  '/html/body/div/div[1]/div[1]/main/div/div/div[2]/div/div/div/div[5]/div/div/div/div/div/div/div[1]/div/div/div[1]/div/div/form/div[3]/div[3]/div[1]/div/div[1]/div/input')
 date_issue.send_keys(random_issue_date)
-# time.sleep(1)
-
 
 # Ввод в поле место рождения
 place_of_birth = driver.find_element(By.XPATH,
@@ -341,7 +313,6 @@ cities = ['Москва', 'Санкт-Петербург', 'Тверь', 'Рос
           'Самара', 'Тольятти']
 random_city = random.randint(0, len(cities) - 1)
 place_of_birth.send_keys(cities[random_city])
-# time.sleep(1)
 
 # Ввод в поле адрес регистрации
 registration_address = driver.find_element(By.XPATH,
@@ -350,27 +321,22 @@ addresses = ['Москва', 'Санкт-Петербург', 'Тверь', 'Р�
              'Самара', 'Тольятти']
 random_address = random.randint(0, len(addresses) - 1)
 registration_address.send_keys(addresses[random_address])
-# time.sleep(1)
 
 # Ввод в поле фактический адресс
 fact_address = driver.find_element(By.XPATH,
                                    '/html/body/div/div[1]/div[1]/main/div/div/div[2]/div/div/div/div[5]/div/div/div/div/div/div/div[1]/div/div/div[1]/div/div/form/div[3]/div[7]/div[1]/div/div[1]/div/input')
 fact_address.send_keys(addresses[random_address])
-# time.sleep(1)
 
 # Скролл
 driver.execute_script("window.scrollTo(0, 500)")
-# time.sleep(2)
 
 # Открытие генератора ИНН, КОПИРОВАНИЕ ИНН
 driver.execute_script("window.open('about:blank', 'tab4');")
 driver.switch_to.window("tab4")
 driver.get('https://www.random1.ru/generator-inn-snils-oms-ogrn-kpp')
-# time.sleep(2)
 copy_inn = driver.find_element(By.XPATH, '//*[@id="inn_fiz"]')
 actionchains = ActionChains(driver)
 actionchains.double_click(copy_inn).perform()
-# time.sleep(1)
 copy_inn.send_keys(Keys.CONTROL + 'C')
 driver.switch_to.window(driver.window_handles[3])
 
@@ -378,27 +344,21 @@ driver.switch_to.window(driver.window_handles[3])
 inn_input = driver.find_element(By.XPATH,
                                 '/html/body/div/div[1]/div[1]/main/div/div/div[2]/div/div/div/div[5]/div/div/div/div/div/div/div[1]/div/div/div[1]/div/div/form/div[4]/div[1]/div/div/div[1]/div/input')
 inn_input.send_keys(Keys.CONTROL + 'V')
-# time.sleep(1)
 
 # РАДИОКНОПКА ПАССПОРТ ДЕЙСТВИТЕЛЕН
 radio_button_passport = driver.find_element(By.XPATH,
                                             '//*[@id="personal_information_block"]/div/div/form/div[6]/div[2]/div/div/div[1]/div/div[1]/div/div')
 radio_button_passport.click()
-# time.sleep(1)
 
 # Скролл
 driver.execute_script("window.scrollTo(0, 1500)")
-# time.sleep(2)
-
 
 # ВЫБОР СТАТУСА
 user_status_change = driver.find_element(By.XPATH,
                                          '//*[@id="app"]/div[1]/div[1]/main/div/div/div[2]/div/div/div/div[5]/div/div/div/div/div/div/div[3]/div[1]/div[1]/div/div/div[1]/div[1]/div[1]')
 user_status_change.click()
-# time.sleep(1)
 user_status_checked = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div/div[4]/div/div[3]/div')))
 user_status_checked.click()
-# time.sleep(1)
 
 # КНОПКА ПРИМЕНИТЬ
 confirm_button = driver.find_element(By.XPATH,
@@ -410,12 +370,6 @@ time.sleep(1.5)
 driver.switch_to.window(driver.window_handles[2])
 time.sleep(3)
 driver.refresh()
-# time.sleep(3)
-# driver.refresh()
-
-# # Клик по кнопке Подписать
-# sign_dec_dash = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div/main/div/div/div[1]/div/div/button')))
-# sign_dec_dash.click()
 
 # Клик по чек боксу
 check_box_6 = wait.until(EC.element_to_be_clickable(
@@ -451,5 +405,5 @@ print_email = show_email.text
 print_password = 'Password1'
 print(print_email)
 print(print_password)
-time.sleep(15)
+time.sleep(5)
 driver.quit()
