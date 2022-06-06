@@ -22,7 +22,7 @@ driver.get(stage)
 driver.maximize_window()
 time.sleep(1)
 
-# Открытие mailinator, создание почты
+# Открытие mailinator, создание почты!
 driver.execute_script("window.open('about:blank', 'tab2');")
 driver.switch_to.window("tab2")
 driver.get('https://www.mailinator.com/site/verified-pro-plan/')
