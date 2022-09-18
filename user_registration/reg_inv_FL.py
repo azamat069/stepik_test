@@ -1,3 +1,4 @@
+# import self as self
 from selenium import webdriver
 import time
 from selenium.webdriver import ActionChains, Keys
@@ -8,19 +9,22 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import datetime as DT
 import pandas as pd
+from selenium.common.exceptions import NoSuchElementException
 
-stage = 'https://stage2.co.fi/register'
-crm_stage = 'https://crm.stage2.co.fi/'
+stage = 'https://stage7.co.fi/register'
+crm_stage = 'https://crm.stage7.co.fi/'
 
-crm_login = ''
-crm_pass = ''
+crm_login = 'a.abdurashidov@cofi.ru'
+crm_pass = 'cpm$yrwj'
 file_1 = 'C:/cover.png'
 file_2 = 'C:/selenium-csharp.jpg'
+
 
 driver = webdriver.Chrome()
 driver.get(stage)
 driver.maximize_window()
 time.sleep(1)
+wait = WebDriverWait(driver, 20)
 
 # Открытие mailinator, создание почты!
 driver.execute_script("window.open('about:blank', 'tab2');")
@@ -43,13 +47,14 @@ actionchains.double_click(copy_email).perform()
 copy_email.send_keys(Keys.CONTROL + 'C')
 driver.switch_to.window(driver.window_handles[0])
 
+
 # Клик по радио-кнопке "Инвестор"
 radio_button_investor = driver.find_element(By.XPATH,
                                             '/html/body/div[1]/div/div/div/main/div/div[1]/form/div[1]/label[2]/div[2]')
 radio_button_investor.click()
 
 # Ввод в поле Email
-email_input = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div/div[1]/form/div[2]/div/div/input')
+email_input = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div/div/div/main/div/div[1]/form/div[2]/div/div/input')))
 email_input.send_keys(Keys.CONTROL + 'V')
 email_input.send_keys('@mailinator.com')
 
@@ -85,7 +90,7 @@ register_1.click()
 # Подтверждение почты в mailinator
 driver.switch_to.window(driver.window_handles[1])
 
-wait = WebDriverWait(driver, 20)
+
 register_latter = wait.until(
     EC.element_to_be_clickable((By.XPATH, '/html/body/div/main/div[2]/div[3]/div/div[4]/div/div/table/tbody/tr/td[2]')))
 register_latter.click()
@@ -144,7 +149,7 @@ check_box_5 = driver.find_element(By.XPATH,
 check_box_5.click()
 
 # Скролл
-driver.execute_script("window.scrollTo(0, 500)")
+driver.execute_script("window.scrollTo(0, 550)")
 
 # Кнопка отправить
 send = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div/div[1]/form/div[2]/button')
@@ -405,5 +410,13 @@ print_email = show_email.text
 print_password = 'Password1'
 print(print_email)
 print(print_password)
+try:
+    plashka = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div/div/div[2]/div[4]/div/div/div[1]/div[2]/a')
+except NoSuchElementException:
+   print('Декларация подписана')
+
 time.sleep(5)
-driver.quit()
+# driver.quit()
+
+
+# /html/body/div[1]/div/div/div/main/div/div/div[1]/div/div/p[1]
